@@ -68,8 +68,6 @@ class ImageService
         if ($image === null) {
             $image = $this->saveImage($data);
             return $image;
-        } elseif ($image->status !== 'refused') {
-            return $image;
         }
 
         return null;
