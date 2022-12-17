@@ -1,0 +1,1 @@
+docker compose run --rm artisan migrate:refresh && docker compose up -d && cd src && npm i && npm run dev
