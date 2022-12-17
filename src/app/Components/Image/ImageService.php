@@ -53,8 +53,9 @@ class ImageService
     }
 
     /**
-     * Проверяем картинку на статус
-     * если status=refused то запрашиваем другую
+     * Проверяем картинку
+     * если уже в базе, запрашиваем другую
+     * если нет в базе то сохраняем и возвращаем
      * @param array $data
      * @return ImageModel|null
      * @throws \Exception
