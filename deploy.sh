@@ -1,1 +1,1 @@
-docker compose run --rm artisan migrate:refresh && docker compose up -d && cd src && npm i && npm run dev
+docker compose up -d && docker compose run --rm composer i && docker compose run --rm artisan migrate:refresh && cd src && npm i && npm run dev
