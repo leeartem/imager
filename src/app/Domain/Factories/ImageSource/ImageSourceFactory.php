@@ -3,7 +3,7 @@
 namespace App\Domain\Factories\ImageSource;
 
 use App\Domain\Entities\ImageSource\Vendors\Picsum;
-use App\Exceptions\UnsupportedSourceException;
+use App\Exceptions\ImageSource\UnsupportedSourceException;
 use Illuminate\Contracts\Container\BindingResolutionException;
 
 class ImageSourceFactory

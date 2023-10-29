@@ -7,7 +7,7 @@ use App\Domain\Entities\Image\Image;
 use App\Domain\Entities\ImageSource\ImageSourceInterface;
 use App\Domain\Factories\ImageSource\ImageSourceFactory;
 use App\Domain\Services\Image\Dto\ImageDto;
-use App\Exceptions\UnsupportedSourceException;
+use App\Exceptions\ImageSource\UnsupportedSourceException;
 use Illuminate\Contracts\Container\BindingResolutionException;
 
 class ImageResolver
