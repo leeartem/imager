@@ -3,23 +3,26 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CheckAdmin
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @param Closure(Request): (Response|RedirectResponse) $next
+     * @return Response|RedirectResponse
      */
     public function handle(Request $request, Closure $next)
     {
         // Проверяем наличие токена и его соответствие нужному
-        if ($request->token && $request->token=='xyz123')
+        if ($request->get('token') && $request->get('token')===config('app.admin_token')) {
             return $next($request);
+        }
 
-        return abort(403);
+        abort(403);
     }
 }

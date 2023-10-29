@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Domain\Entities\Image\ImageStatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class StatusRequest extends FormRequest
 {
@@ -23,10 +25,14 @@ class StatusRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'status' => 'required|in:waiting,accepted,refused'
+            'id' => 'nullable',
+            'status' => [
+                'required',
+                Rule::in(ImageStatusEnum::getAll())
+            ]
         ];
     }
 

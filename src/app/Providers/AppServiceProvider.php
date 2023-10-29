@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Domain\Entities\Image\IImageRepository;
+use App\Domain\Repositories\Image\ImageRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,9 +13,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        //
+        $this->app->bind(IImageRepository::class, ImageRepository::class);
     }
 
     /**
@@ -23,6 +25,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+    }
+
+    public function provides(): array
+    {
+        return [
+            IImageRepository::class
+        ];
     }
 }

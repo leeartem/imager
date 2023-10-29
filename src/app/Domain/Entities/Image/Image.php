@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Components\Image;
+namespace App\Domain\Entities\Image;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Http\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Model;
 
-class ImageModel extends Model
+class Image extends Model
 {
-    use HasFactory;
-    use \App\Http\Traits\UsesUuid;
+    use UsesUuid;
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
-
 
     protected $table = 'images';
 

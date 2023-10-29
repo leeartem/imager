@@ -4,10 +4,9 @@ export function loadImage() {
     let image = $("#image");
     $.get("/api/image/get", function(data){
         image.attr("src", data.sourceUrl);
-        image.data( "id", data.id )
+        image.data( "id", data.externalId )
     });
 }
-
 
 function setStatus(status) {
     let image = $("#image");
@@ -27,6 +26,7 @@ function setStatus(status) {
 $('.image-action').click(function(){
     let status = $(this).data('status')
     setStatus(status);
-
 });
+
+loadImage();
 

@@ -15,5 +15,5 @@ use App\Http\Controllers\ImageController;
 |
 */
 
-Route::get('/image/get', [ImageController::class, 'get']);
-Route::get('/image/setStatus', [ImageController::class, 'setStatus']);
+Route::get('/image/get', [ImageController::class, 'get'])->name('api.image.get');
+Route::get('/image/setStatus', [ImageController::class, 'setStatus'])->name('api.image.set-status');

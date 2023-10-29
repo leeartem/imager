@@ -2,33 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Components\Image\ImageModel;
-use App\Components\Image\ImageService;
+use App\Domain\Entities\Image\IImageRepository;
 use App\Http\Requests\StatusRequest;
 
 class AdminController extends Controller
 {
-    public function index(Request $request)
+    public function index(IImageRepository $imageRepository)
     {
-        try {
-            $service = new ImageService();
-            $data = $service->getImages();
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        $data = $imageRepository->get();
 
         return view('admin', compact('data'));
     }
 
-    public function imageCancel(string $id, StatusRequest $request)
-    {
-        try {
-            $service = new ImageService();
-            $data = $service->setStatus($request);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+    public function imageCancel(
+        string $id,
+        StatusRequest $request,
+        IImageRepository $imageRepository
+    ) {
+        $imageRepository->setStatus(
+            $id,
+            null,
+            $request->get('status'),
+        );
 
         return back();
     }

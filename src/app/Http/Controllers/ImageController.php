@@ -2,33 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Components\Image\ImageService;
+use App\Domain\Entities\Image\IImageRepository;
+use App\Domain\Factories\ImageSource\ImageSourceEnum;
+use App\Domain\Services\Image\ImageResolver;
 use App\Http\Requests\StatusRequest;
 
 class ImageController extends Controller
 {
-    public function get()
-    {
-        try {
-            $service = new ImageService();
-            $data = $service->getImage('picsum')->toArray();
-//            В реально проекте сюда наверняка нужны были бы кастомные экспшены
-        } catch (\Exception $e) {
-            throw $e;
-        }
+    public function get(ImageResolver $imageResolver) {
+        $dto = $imageResolver->execute(ImageSourceEnum::PICSUM->value);
 
-        return $data;
+        return response($dto->toArray());
     }
 
-    public function setStatus(StatusRequest $request)
+    public function setStatus(StatusRequest $request, IImageRepository $imageRepository)
     {
-        try {
-            $service = new ImageService();
-            $data = $service->setStatus($request);
-        } catch (\Exception $e) {
-            throw $e;
-        }
-
-        return $data;
+        $imageRepository->setStatus(
+            null,
+            $request->get('id'),
+            $request->get('status'),
+        );
     }
 }

@@ -11,12 +11,11 @@
                     <img id="image" src="" alt="">
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-success image-action" data-status="accepted">Accept</button>
-                    <button class="btn btn-danger image-action" data-status="refused">Refuse</button>
+                    <button class="btn btn-success image-action" data-status="{{ \App\Domain\Entities\Image\ImageStatusEnum::ACCEPTED->value }}">Accept</button>
+                    <button class="btn btn-danger image-action" data-status="{{ \App\Domain\Entities\Image\ImageStatusEnum::REFUSED->value }}">Refuse</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@vite(['resources/js/home.js'])
 @endsection
